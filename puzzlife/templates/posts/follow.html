@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Обновления в ваших подписках
+{% endblock %}
+
+{% block content %}
+  {% include 'posts/includes/switcher.html' %}
+  {% for post in page_obj %}
+    {% include 'posts/includes/posts_list.html' %}
+  {% endfor %}
+  {% include 'posts/includes/paginator.html' %}
+{% endblock %}

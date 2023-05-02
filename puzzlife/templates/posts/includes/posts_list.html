@@ -1,0 +1,31 @@
+{% load thumbnail %}
+<ul>
+  <li>
+    Автор:
+    <a href="{% url 'posts:profile' post.author.username %}">
+      {{ post.author.get_full_name }}
+    </a>
+  </li>
+  <li>
+    Дата публикации: {{ post.created|date:"d E Y" }}
+  </li>
+</ul>
+<p>{{ post.text|truncatechars:120 }}
+  {% if post.text|length > 120 %}
+    <a href="{% url 'posts:post_detail' post.pk %}">Читать далее</a>
+  {% endif %}
+</p>
+{% if post.image %}
+  <p><img src="{{ post.image.url }}" alt="Картинка поста" style="width:600px"></p>
+{% endif %}
+<a href="{% url 'posts:post_detail' post.pk %}">Оставить комментарий</a>
+<p>
+  {% if not group %}
+    {% if post.group %}
+      <a href="{% url 'posts:group_list' post.group.slug %}">Все записи
+        группы {{ post.group.title }}</a>
+    {% endif %}
+  {% endif %}
+</p>
+{% if not forloop.last %}
+  <hr>{% endif %}

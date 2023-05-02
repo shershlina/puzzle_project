@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Custom 500{% endblock %}
+{% block content %}
+  <h1>Упс, что-то пошло не так :(</h1>
+  <p>Наш сервер временно отдыхает, попробуйте позже</p>
+  <a href="{% url 'posts:index' %}">Вернуться на главную</a>
+{% endblock %}

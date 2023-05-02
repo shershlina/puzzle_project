@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+
+{% block title %}
+  Записи сообщества {{ group.title }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ group.title }}</h1>
+<p>
+  {{ group.description }}
+</p>
+{% load cache %}
+{% cache 20 group_page %}
+{% for post in page_obj %}
+  {% include 'posts/includes/posts_list.html' %}
+{% endfor %}
+{% endcache %}
+{% include 'posts/includes/paginator.html' %}
+{% endblock %}
